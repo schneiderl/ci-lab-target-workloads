@@ -1,0 +1,11 @@
+import { readFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
+import { z } from 'zod';
+export const sha = (s: string) => createHash('sha256').update(s).digest('hex');
+export const fixture = JSON.parse(readFileSync('ci/case.json', 'utf8'));
+export const plan = z.object({schemaVersion:z.literal(1),cache:z.boolean(),partitions:z.array(z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1)).min(1).max(4)}).strict().parse(JSON.parse(readFileSync('ci/plan.json','utf8')));
+assert.ok(plan.partitions.length <= fixture.maxPartitions);
+assert.deepEqual(plan.partitions.flat().sort(), Object.keys(fixture.tests).sort());
+assert.equal(new Set(plan.partitions.flat()).size, Object.keys(fixture.tests).length);
+export const planDigest = sha(JSON.stringify(plan) + '\n');

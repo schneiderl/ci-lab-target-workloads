@@ -1,0 +1,14 @@
+import { writeFileSync } from 'node:fs';
+import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
+import { fixture, plan, planDigest, sha } from './requirements.ts';
+import { execute } from '../tests/inventory.ts';
+import YAML from 'yaml';
+assert.equal(YAML.parse('ready: true').ready, true);
+execFileSync('npm', ['ls','--all','--json'], {stdio:'pipe'});
+const partition = Number(process.env.PARTITION);
+assert.ok(Number.isInteger(partition) && partition >= 0 && partition < plan.partitions.length);
+const tests = plan.partitions[partition]!.map(id => ({id, output:sha(execute(id, fixture.iterations, fixture.tests[id])),status:'pass'}));
+const record = {schemaVersion:1,runId:process.env.GITHUB_RUN_ID ?? 'local',commit:process.env.GITHUB_SHA ?? 'local',planDigest,cacheKey:process.env.CACHE_KEY ?? 'local',cacheHit:process.env.CACHE_HIT === 'true',partition,node:process.version,tests,dependencyCheck:true};
+writeFileSync('execution.json', JSON.stringify(record) + '\n');
+console.log(JSON.stringify({partition,executed:tests.map(test=>test.id),planDigest}));

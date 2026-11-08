@@ -1,8 +1,20 @@
 {
-  "id": "no-change",
-  "iterations": 5000,
+  "id": "cache-heldout",
+  "iterations": 80000,
   "tests": {
-    "case-000": "ff644fa333ac6dd19f5e6ffb52190cec89586ad6fa4b92bce4195db75ad53050"
+    "case-000": "8b52566bdd5df3653e49e90fac320b8fe45ef3fdf699961b6f99d489b671eab8",
+    "case-001": "33ee31b07da437e5ec5eaf204a41f89c76a64a7fa8738f791f62d6e3fed7eac8",
+    "case-002": "d7f32e0ace97ebcfed8e874360da9fbf691d92d23a0c3c87a24fbd8fcca2b570",
+    "case-003": "5cfa420fa1ab038acc82e0626ada13ac46d9ad0a157fa8f812581187ae2f990f",
+    "case-004": "849f66495f3b0dd501394b6a52e614af3e2b59da73b3b4ee6ec960c752529e5a",
+    "case-005": "ce281a0cf76e0b9505d65fff64927570043a02e389652181130657b2b4a0ab74",
+    "case-006": "50a76c0b781f9d1c940bb7812bc183403c04b1efa2405b5ccfc534f857fbbf28",
+    "case-007": "57d6a50f927e6dc7cc5f9651844d893e35e1f36b51e044b2dcaa48b0e7c4e96a",
+    "case-008": "8396a5ebb969f982d71a308568cc2d55a7b39fbca5f6c72328a5edc7115a24d5",
+    "case-009": "e23b4d5bdb98b546738a32bddea1f576fe8f16e523f3ce7eb6ab6e884690592f",
+    "case-010": "0e5014023c7b587fdef605ff2caf4d7ceffcc3aa68a216f27d759b11f77a3e4e",
+    "case-011": "f9b6db43394e09a29ff098f1cb1531d242cfc1112f3d2680d3434cef139f399a",
+    "case-012": "d58eb1f5caee0c822bbcc98ae0ff647da82932b4fd8bf2761837c35c7a8635e1"
   },
   "maxPartitions": 1
 }
